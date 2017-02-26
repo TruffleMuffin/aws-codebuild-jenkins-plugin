@@ -25,9 +25,9 @@ public class LoggingHelper {
     public static void log(final BuildListener listener, String message, String secondary) {
         String completeMessage;
         if(secondary == null || secondary.isEmpty()) {
-            completeMessage = "[AWS CodeBuild Plugin] " + message;
+            completeMessage = message;
         } else {
-            completeMessage = "[AWS CodeBuild Plugin] " + message + "\n> " + secondary;
+            completeMessage = message + "\n> " + secondary;
         }
 
         if(listener == null) {
