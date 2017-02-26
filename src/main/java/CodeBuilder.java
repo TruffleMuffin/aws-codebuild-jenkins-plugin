@@ -186,7 +186,7 @@ public class CodeBuilder extends Builder {
 
                 if(!haveInitializedAction) {
                     if(logMonitor == null) {
-                        logMonitor = new CloudWatchMonitor(awsClientFactory.getCloudWatchLogsClient());
+                        logMonitor = new CloudWatchMonitor(awsClientFactory.getCloudWatchLogsClient(), listener);
                     }
 
                     updateDashboard(currentBuild);
