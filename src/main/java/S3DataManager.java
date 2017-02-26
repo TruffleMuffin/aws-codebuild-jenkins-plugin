@@ -128,7 +128,9 @@ public class S3DataManager {
         for (int i = 0; i < dirFiles.length; i++) {
             File f = new File(dir, dirFiles[i]);
             if (f.isDirectory()) {
-                zipSource(f.getPath() + "/", out, prefixToTrim);
+                if(f.getName().equals(".git") == false) {
+                  zipSource(f.getPath() + File.separator, out, prefixToTrim);
+                }
             } else {
                 FileInputStream inputStream = new FileInputStream(f);
                 try {
