@@ -18,6 +18,7 @@ import com.amazonaws.services.codebuild.model.LogsLocation;
 import com.amazonaws.services.logs.AWSLogsClient;
 import com.amazonaws.services.logs.model.GetLogEventsRequest;
 import com.amazonaws.services.logs.model.OutputLogEvent;
+import hudson.model.BuildListener;
 import lombok.Getter;
 import lombok.Setter;
 

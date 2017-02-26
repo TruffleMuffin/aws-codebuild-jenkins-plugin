@@ -48,13 +48,13 @@ public class CloudWatchMonitorTest {
 
     @Test
     public void testInvalidConfig() throws Exception {
-        CloudWatchMonitor c = new CloudWatchMonitor(null);
+        CloudWatchMonitor c = new CloudWatchMonitor(null, null);
         assertLogsContainErrorMessage(c);
     }
 
     @Test
     public void testPollExcepts() throws Exception {
-        CloudWatchMonitor c = new CloudWatchMonitor(mockClient);
+        CloudWatchMonitor c = new CloudWatchMonitor(mockClient, null);
         c.setLogsLocation(new LogsLocation());
         InvalidInputException e = new InvalidInputException("no logs");
         when(mockClient.getLogEvents(any(GetLogEventsRequest.class))).thenThrow(e);
@@ -64,7 +64,7 @@ public class CloudWatchMonitorTest {
 
     @Test
     public void testFormatLogs() throws Exception {
-        CloudWatchMonitor c = new CloudWatchMonitor(mockClient);
+        CloudWatchMonitor c = new CloudWatchMonitor(mockClient, null);
         c.setLogsLocation(new LogsLocation());
         List<OutputLogEvent> logs = new ArrayList<OutputLogEvent>();
         logs.add(new OutputLogEvent().withMessage("[Container] entry 1"));
