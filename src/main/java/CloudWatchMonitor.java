@@ -29,7 +29,7 @@ public class CloudWatchMonitor {
 
     @Setter private AWSLogsClient logsClient;
     @Setter@Getter  private LogsLocation logsLocation;
-    @Setter@Getter  private TaskListener listener;
+    @Setter@Getter  private BuildListener listener;
     @Getter private List<String> latestLogs;
 
     private static final int LOG_LIMIT = 15;
@@ -38,7 +38,7 @@ public class CloudWatchMonitor {
     public static final String noLogsMessage = "Fetching CloudWatch logs for this build.";
     public static final String failedConfigurationLogsMessage = "CloudWatch configuration for this build is incorrect.";
 
-    public CloudWatchMonitor(AWSLogsClient client, TaskListener listener) {
+    public CloudWatchMonitor(AWSLogsClient client, BuildListener listener) {
         this.logsClient = client;
         this.listener = listener;
         if(!Validation.checkCloudWatchMonitorConfig(logsClient)) {
