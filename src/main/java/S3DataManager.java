@@ -129,7 +129,7 @@ public class S3DataManager {
             File f = new File(dir, dirFiles[i]);
             if (f.isDirectory()) {
                 if (f.getName().equals(".git") == false) {
-                  zipSource(f.getPath() + "/", out, prefixToTrim);
+                  zipSource(f.getPath() + File.separator, out, prefixToTrim);
                 }
             } else {
                 FileInputStream inputStream = new FileInputStream(f);
@@ -138,9 +138,11 @@ public class S3DataManager {
 
                     path = path.substring(prefixToTrim.length(), path.length());
 
-                    if (path.startsWith("/")) {
+                    if (path.startsWith(File.separator)) {
                     	path = path.substring(1, path.length());
                     }
+
+                    path = path.replace(File.separator, "/");
 
                     ZipEntry entry = new ZipEntry(path);
                     out.putNextEntry(entry);
