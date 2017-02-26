@@ -128,7 +128,7 @@ public class S3DataManager {
         for (int i = 0; i < dirFiles.length; i++) {
             File f = new File(dir, dirFiles[i]);
             if (f.isDirectory()) {
-                if(f.getName().equals(".git") == false && f.getName().equals("") == false) {
+                if (f.getName().equals(".git") == false) {
                   zipSource(f.getPath() + File.separator, out, prefixToTrim);
                 }
             } else {
@@ -137,6 +137,10 @@ public class S3DataManager {
                     String path = f.getPath();
 
                     path = path.substring(prefixToTrim.length(), path.length());
+
+                    if (path.startsWith(File.separator)) {
+                    	path = path.substring(1, path.length());
+                    }
 
                     ZipEntry entry = new ZipEntry(path);
                     out.putNextEntry(entry);
